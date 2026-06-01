@@ -124,8 +124,22 @@ def main(
             price=price
         )
 
-        click.echo('Order response:')
-        click.echo(resp)
+        click.echo("\n📋 Order Request Summary")
+        click.echo(f"Symbol: {symbol.upper()}")
+        click.echo(f"Side: {side.upper()}")
+        click.echo(f"Order Type: {order_type.upper()}")
+        click.echo(f"Quantity: {quantity}")
+
+        if price:
+            click.echo(f"Price: {price}")
+
+        click.echo("\n📊 Order Response Details")
+        click.echo(f"Order ID: {resp.get('orderId', 'N/A')}")
+        click.echo(f"Status: {resp.get('status', 'N/A')}")
+        click.echo(f"Executed Quantity: {resp.get('executedQty', 'N/A')}")
+        click.echo(f"Average Price: {resp.get('avgPrice', 'N/A')}")
+
+        click.echo("\n✅ Order placed successfully")
 
     except Exception as e:
         click.echo(f'Error placing order: {e}', err=True)
